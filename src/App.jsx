@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Calendar from "./pages/Calendar";
 import Students from "./pages/Students";
 import Sessions from "./pages/Sessions";
 import Enrollments from "./pages/Enrollments";
@@ -16,6 +17,8 @@ function App() {
         <Route path="/" element={<Login />} />
         {/* Register */}
         <Route path="/register" element={<Register />} />
+        {/* Calendar */}
+        <Route path="/calendar" element={<Calendar />} />
         {/* Students */}
         <Route path="/students" element={<Students />} />
         {/* Sessions */}
