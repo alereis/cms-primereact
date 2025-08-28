@@ -21,31 +21,41 @@ function Sidebar() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    const handleNavigation = (path) => {
+        if (isMobile) {
+            setIsCollapsed(true); // This will close the sidebar on mobile
+        }
+        navigate(path);
+    };
+
     // Calendar page
-    const viewCalendar = async () => {
-        navigate("/calendar");
+    const viewCalendar = () => {
+        handleNavigation("/calendar");
     }
 
     // Students page
-    const viewStudents = async () => {
-        navigate("/students");
+    const viewStudents = () => {
+        handleNavigation("/students");
     }
 
     // Sessions page
-    const viewSessions = async () => {
-        navigate("/sessions");
+    const viewSessions = () => {
+        handleNavigation("/sessions");
     }
 
-    // Sessions page
-    const viewEnrollments = async () => {
-        navigate("/enrollments");
+    // Enrollments page
+    const viewEnrollments = () => {
+        handleNavigation("/enrollments");
     }
     
     // Sign out function
     const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    
-    if (error) throw error;
+        if (isMobile) {
+            setIsCollapsed(true); // Close sidebar before signing out
+        }
+        const { error } = await supabase.auth.signOut();
+        
+        if (error) throw error;
         navigate("/");
     };
 
