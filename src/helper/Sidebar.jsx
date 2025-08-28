@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import supabase from "../helper/supabaseClient";
 import logo from '../images/jb-logo.png';
 
 function Sidebar() {
     const navigate = useNavigate();
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+            if (window.innerWidth <= 768) {
+                setIsCollapsed(true);
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Calendar page
     const viewCalendar = async () => {
@@ -36,11 +51,33 @@ function Sidebar() {
 
     return (
         <div>
-            <div className="layout-sidebar">
+            {isMobile && (
+                <button 
+                    className="mobile-menu-toggle"
+                    onClick={() => setIsCollapsed(!isCollapsed)}
+                    aria-label="Toggle menu"
+                >
+                    <span className="material-symbols-rounded">
+                        {isCollapsed ? 'menu' : 'close'}
+                    </span>
+                </button>
+            )}
+            <div className={`layout-sidebar ${isCollapsed ? 'collapsed' : ''} ${isMobile ? 'mobile' : ''}`}>
                 <div className="layout-sidebar-logo">
                     <a className="header-logo">
                         <img src={logo} alt="JB Logo" className="logo" />
                     </a>
+                    {!isMobile && (
+                        <button 
+                            className="collapse-button"
+                            onClick={() => setIsCollapsed(!isCollapsed)}
+                            aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+                        >
+                            <span className="material-symbols-rounded">
+                                {isCollapsed ? 'chevron_right' : 'chevron_left'}
+                            </span>
+                        </button>
+                    )}
                 </div>
                 {/* Navigation menu */}
                 <div className="layout-sidebar-menu">
