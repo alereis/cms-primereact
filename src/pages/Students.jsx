@@ -152,6 +152,7 @@ function Students() {
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} students"
             header={header}
+            responsiveLayout="scroll"
           >
             <Column selectionMode="multiple" headerStyle={{ width: "3rem" }}></Column>
             <Column field="first_name" header="First Name" className="customColumn" alignHeader="center"></Column>

@@ -46,7 +46,7 @@ function Sidebar() {
     };
 
     return (
-                <div className="sidebar-container">
+            <div className="sidebar-container">
             {/* Toggle button positioned outside sidebar to avoid overlap */}
             <button 
                 className="mobile-menu-toggle small-toggle sidebar-toggle"

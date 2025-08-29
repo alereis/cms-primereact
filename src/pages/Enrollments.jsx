@@ -162,7 +162,8 @@ function Enrollments() {
     return (
       <div className="p-3">
         <h5>Students in {data.name}</h5>
-        <DataTable value={data.enrollments}>
+        <DataTable value={data.enrollments}
+                   responsiveLayout="scroll">
           <Column field="students.first_name" header="First Name" 
                  body={(rowData) => rowData.students.first_name} className="customColumn" alignHeader="center"></Column>
           <Column field="students.last_name" header="Last Name"
@@ -237,6 +238,7 @@ function Enrollments() {
             loading={loading}
             paginator
             rows={10}
+            responsiveLayout="scroll"
             rowsPerPageOptions={[5, 10, 25]}
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} sessions"

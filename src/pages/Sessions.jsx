@@ -169,6 +169,7 @@ function Sessions() {
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} sessions"
                     header={header}
+                    responsiveLayout="scroll"
                 >
                     <Column selectionMode="multiple" headerStyle={{ width: "3rem" }}></Column>
                     <Column field="name" header="Session Name" className="customColumn" alignHeader="center"></Column>

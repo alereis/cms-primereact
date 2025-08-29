@@ -630,6 +630,19 @@ p {
   font-size: clamp(0.75rem, 2vw, 0.875rem);
 }
 
+/* Desktop DataTable behavior - no scroll restrictions */
+@media (min-width: 769px) {
+  .p-datatable {
+    height: auto !important;
+  }
+  
+  .p-datatable .p-datatable-wrapper {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+}
+
 .p-datatable .p-datatable-header {
   padding: 0.75rem;
 }
@@ -708,6 +721,22 @@ p {
   .p-toolbar .p-button {
     margin-bottom: 0.5rem;
   }
+  
+  /* Enable DataTable horizontal scrolling only on mobile */
+  .p-datatable-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .p-datatable-table {
+    min-width: 100%;
+  }
+  
+  /* Make action buttons more touch-friendly on mobile */
+  .p-datatable .p-button.p-button-icon-only {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -734,5 +763,33 @@ p {
   .p-calendar {
     min-height: 36px;
     font-size: 0.8rem;
+  }
+  
+  /* Enhanced mobile table scrolling for very small screens */
+  .p-datatable-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  
+  .p-datatable-table {
+    min-width: 100%;
+    table-layout: fixed;
+  }
+  
+  /* Ensure action buttons are properly sized for touch */
+  .p-datatable .p-button.p-button-icon-only {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.5rem;
+  }
+  
+  /* Improve table header visibility on small screens */
+  .p-datatable .p-datatable-thead > tr > th {
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
   }
 }
