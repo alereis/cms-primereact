@@ -18,7 +18,11 @@ function App() {
         {/* Register */}
         <Route path="/register" element={<Register />} />
         {/* Calendar */}
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/calendar" element={
+          <Wrapper>
+            <Calendar />
+          </Wrapper>
+        } />
         {/* Students */}
         <Route path="/students" element={<Students />} />
         {/* Sessions */}
