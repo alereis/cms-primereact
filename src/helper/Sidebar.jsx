@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import supabase from "../helper/supabaseClient";
 import logo from '../images/jb-logo.png';
@@ -6,6 +6,28 @@ import logo from '../images/jb-logo.png';
 function Sidebar() {
     const navigate = useNavigate();
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [user, setUser] = useState(null);
+
+    // Monitor authentication state
+    useEffect(() => {
+        const getUser = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            setUser(user);
+            console.log('Current user:', user);
+        };
+
+        getUser();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log('Auth state change:', event, session);
+            if (event === 'SIGNED_OUT') {
+                setUser(null);
+                console.log('User signed out successfully');
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
 
     // Remove the useEffect entirely - no more screen size dependencies
 
@@ -37,12 +59,30 @@ function Sidebar() {
     
     // Sign out function
     const signOut = async () => {
-        // Always collapse sidebar before signing out
-        setIsCollapsed(true);
-        const { error } = await supabase.auth.signOut();
-        
-        if (error) throw error;
-        navigate("/");
+        try {
+            console.log('Starting signout process...');
+            
+            // Sign out from Supabase first
+            const { error } = await supabase.auth.signOut();
+            
+            if (error) {
+                console.error('Sign out error:', error);
+                return;
+            }
+            
+            console.log('Signout successful, navigating to login...');
+            
+            // Navigate to login page first
+            navigate("/");
+            
+            // Then collapse sidebar after navigation
+            setTimeout(() => {
+                setIsCollapsed(true);
+            }, 100);
+            
+        } catch (error) {
+            console.error('Sign out error:', error);
+        }
     };
 
     return (
@@ -105,6 +145,8 @@ function Sidebar() {
                         <li className="nav-item secondary">
                             <a className="nav-link" onClick={(e) => {
                                 e.preventDefault();
+                                e.stopPropagation();
+                                console.log('Signout button clicked, calling signOut function...');
                                 signOut();
                                 }}>
                                 <span className="material-symbols-rounded">logout</span>

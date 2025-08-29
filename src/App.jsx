@@ -24,11 +24,23 @@ function App() {
           </Wrapper>
         } />
         {/* Students */}
-        <Route path="/students" element={<Students />} />
+        <Route path="/students" element={
+          <Wrapper>
+            <Students />
+          </Wrapper>
+        } />
         {/* Sessions */}
-        <Route path="/sessions" element={<Sessions />} />
+        <Route path="/sessions" element={
+          <Wrapper>
+            <Sessions />
+          </Wrapper>
+        } />
         {/* Enrollments */}
-        <Route path="/enrollments" element={<Enrollments />} />
+        <Route path="/enrollments" element={
+          <Wrapper>
+            <Enrollments />
+          </Wrapper>
+        } />
         {/* Dashboard */}
         <Route path="/dashboard" element={
           <Wrapper>

@@ -17,6 +17,15 @@ function Wrapper({children}) {
         };
 
         getSession();
+
+        // Listen for authentication state changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log('Wrapper: Auth state change:', event, session);
+            setAuthenticated(!!session);
+            setLoading(false);
+        });
+
+        return () => subscription.unsubscribe();
     },[]);
 
     if (loading) {

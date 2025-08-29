@@ -1020,3 +1020,32 @@ p {
     z-index: 1;
   }
 }
+
+/* Signout button specific styling */
+.signout-button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signout-button:hover {
+  background-color: #FEE2E2 !important;
+  color: #DC2626 !important;
+  border-color: #DC2626 !important;
+}
+
+.signout-button:active {
+  transform: scale(0.98);
+}
+
+/* Ensure signout button doesn't interfere with sidebar collapse */
+.layout-sidebar .nav-item.secondary .signout-button {
+  margin: 0;
+  padding: 11px 15px;
+  border-radius: 8px;
+  border: 1px solid #297b26;
+  background: transparent;
+  color: #000000;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
