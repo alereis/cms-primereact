@@ -11,6 +11,47 @@
 
 @import 'primeflex/primeflex.scss';
 
+/* FullCalendar styles */
+.fc {
+    font-family: inherit;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.fc .fc-button {
+    background-color: #3B82F6;
+    border-color: #2563EB;
+    color: white;
+}
+
+.fc .fc-button:hover {
+    background-color: #2563EB;
+    border-color: #1D4ED8;
+}
+
+.fc .fc-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+.fc .fc-daygrid-event {
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 0.875rem;
+}
+
+.fc .fc-event {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.fc .fc-event:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 /* Responsive breakpoints */
 :root {
   --mobile: 480px;
