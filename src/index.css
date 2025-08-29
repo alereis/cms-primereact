@@ -11,7 +11,13 @@
 
 @import 'primeflex/primeflex.scss';
 
-
+/* Responsive breakpoints */
+:root {
+  --mobile: 480px;
+  --tablet: 768px;
+  --desktop: 1024px;
+  --large-desktop: 1200px;
+}
 
 html {
     font-size: 14px;
@@ -28,6 +34,7 @@ body {
     margin-bottom: 50px;
 }
 
+/* Responsive typography */
 h1, h2, h3, h4, h5, h6 {
     margin: 1.5rem 0 1rem 0;
     font-family: inherit;
@@ -36,12 +43,13 @@ h1, h2, h3, h4, h5, h6 {
     color: inherit;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
+h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.25rem, 3.5vw, 2rem); }
+h3 { font-size: clamp(1.125rem, 3vw, 1.75rem); }
+h4 { font-size: clamp(1rem, 2.5vw, 1.5rem); }
+h5 { font-size: clamp(0.875rem, 2vw, 1.25rem); }
+h6 { font-size: clamp(0.75rem, 1.5vw, 1rem); }
+
 p {
     line-height: 1.5;
     margin: 0 0 1rem 0;
@@ -65,14 +73,15 @@ p {
   margin-bottom: 1.87rem;
 }
 
+/* Responsive login container */
 .login-container {
-  max-width: 410px;
+  max-width: min(410px, 90vw);
   margin: 0 auto;
   border-radius: 0.5rem;
-  padding: 2rem 1.5rem;
+  padding: clamp(1rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem);
   background: #fff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  margin-top: 100px;
+  margin-top: clamp(50px, 10vh, 100px);
 }
 
 .login-form .input-wrapper {
@@ -86,7 +95,7 @@ p {
   height: 100%;
   width: 100%;
   outline: none;
-  font-size: 1.06rem;
+  font-size: clamp(0.875rem, 2.5vw, 1.06rem);
   border-radius: 0.31rem;
   border: 1px solid #ccc;
   padding: 0 1.25rem 0 3.12rem;
@@ -143,7 +152,7 @@ p {
   border: none;
   color: #fff;
   font-weight: 500;
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
   background: #4aa347;
   margin-top: 2.9rem;
   border-radius: 0.31rem;
@@ -164,6 +173,7 @@ p {
   text-decoration: underline;
 }
 
+/* Responsive sidebar */
 .layout-sidebar {
   position: fixed;
   left: 0;
@@ -315,50 +325,19 @@ p {
   font-size: 24px;
 }
 
-@media (max-width: 768px) {
-  .layout-sidebar.mobile {
-    transform: translateX(-100%);
-    width: 250px;
-  }
-
-  .layout-sidebar.mobile.collapsed {
-    transform: translateX(0);
-  }
-
-  .layout-content {
-    margin-left: 0;
-    padding-left: 60px; /* Space for the mobile menu button */
-  }
-  
-  .collapsed + .layout-content {
-    margin-left: 0;
-  }
-
-  /* Overlay when mobile menu is open */
-  .layout-sidebar.mobile:not(.collapsed)::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-  }
-}
-
+/* Responsive user view and forms */
 .user-view h1{
-  margin-left: 10px;
+  margin-left: clamp(5px, 2vw, 10px);
   margin-bottom: 10px;
   color:#333;
-  font-size: 22px;
+  font-size: clamp(18px, 4vw, 22px);
   font-weight: bold;
 }
 
 .user-view .box{
-  padding: 20px;
-  margin-left: 20px;
-  margin-right: 10px;
+  padding: clamp(15px, 4vw, 20px);
+  margin-left: clamp(10px, 3vw, 20px);
+  margin-right: clamp(5px, 2vw, 10px);
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -372,7 +351,7 @@ p {
 
 .user-view p span{
   display: inline-block;
-  min-width: 180px;
+  min-width: clamp(120px, 25vw, 180px);
 }
 
 .user-view p span:first-child{
@@ -390,9 +369,370 @@ p {
 
 ._add-view p input{
   margin: 5px 0;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .addNewStudent {
   align-items: center;
+}
+
+/* Responsive form layouts */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.col-sm-12,
+.col-md-6 {
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.col-sm-12 {
+  width: 100%;
+}
+
+.col-md-6 {
+  width: 100%;
+}
+
+/* Responsive input fields */
+.user-view .box p {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.user-view .box p span {
+  min-width: auto;
+  margin-bottom: 5px;
+}
+
+/* PrimeReact component responsive overrides */
+.p-inputtext,
+.p-calendar,
+.p-inputtextarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: auto !important;
+}
+
+.p-float-label {
+  width: 100%;
+}
+
+.p-float-label input,
+.p-float-label .p-calendar {
+  width: 100% !important;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  body {
+    padding: 0.25em;
+    margin-bottom: 30px;
+  }
+
+  .layout-sidebar.mobile {
+    transform: translateX(-100%);
+    width: 250px;
+  }
+
+  .layout-sidebar.mobile.collapsed {
+    transform: translateX(0);
+  }
+
+  .layout-content {
+    margin-left: 0;
+    padding-left: 60px;
+  }
+  
+  .collapsed + .layout-content {
+    margin-left: 0;
+  }
+
+  .layout-sidebar.mobile:not(.collapsed)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  .user-view .box {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 15px;
+  }
+
+  .user-view h1 {
+    margin-left: 5px;
+    font-size: 20px;
+  }
+
+  .col-sm-12,
+  .col-md-6 {
+    width: 100%;
+    padding: 0 5px;
+  }
+
+  .user-view .box p {
+    flex-direction: column;
+  }
+
+  .user-view .box p span {
+    margin-bottom: 8px;
+  }
+
+  /* Mobile-optimized form spacing */
+  ._add-view .box {
+    margin-bottom: 15px;
+  }
+
+  ._add-view h1 {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    margin-top: 30px;
+    padding: 1rem;
+  }
+
+  .mobile-menu-toggle {
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 35px;
+    height: 35px;
+  }
+
+  .mobile-menu-toggle .material-symbols-rounded {
+    font-size: 20px;
+  }
+
+  .user-view .box {
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 10px;
+  }
+
+  .user-view h1 {
+    margin-left: 2px;
+    font-size: 18px;
+  }
+
+  .col-sm-12,
+  .col-md-6 {
+    padding: 0 2px;
+  }
+
+  /* Stack form elements vertically on very small screens */
+  .user-view .box p {
+    margin-bottom: 15px;
+  }
+
+  .user-view .box p span {
+    margin-bottom: 5px;
+  }
+}
+
+/* Tablet responsive design */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .col-md-6 {
+    width: 50%;
+  }
+
+  .user-view .box {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .user-view h1 {
+    margin-left: 15px;
+  }
+}
+
+/* Desktop responsive design */
+@media (min-width: 1025px) {
+  .col-md-6 {
+    width: 50%;
+  }
+
+  .layout-sidebar {
+    width: 250px;
+  }
+
+  .layout-content {
+    margin-left: 250px;
+  }
+}
+
+/* Large desktop responsive design */
+@media (min-width: 1201px) {
+  .login-container {
+    max-width: 450px;
+  }
+
+  .user-view .box {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+}
+
+/* Touch-friendly improvements for mobile */
+@media (max-width: 768px) {
+  .nav-link,
+  .collapse-button,
+  .mobile-menu-toggle {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .nav-link {
+    padding: 12px 15px;
+  }
+
+  .collapse-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mobile-menu-toggle {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* High DPI display support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .layout-sidebar .layout-sidebar-logo img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* PrimeReact responsive overrides */
+.p-dialog {
+  width: 90vw !important;
+  max-width: 600px !important;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 1rem;
+}
+
+.p-datatable {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
+.p-datatable .p-datatable-header {
+  padding: 0.75rem;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  padding: 0.75rem 0.5rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.75rem 0.5rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
+.p-button {
+  min-height: 44px;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+
+.p-inputtext,
+.p-dropdown,
+.p-multiselect,
+.p-calendar {
+  min-height: 44px;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+
+.p-float-label label {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
+.p-toolbar {
+  padding: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.p-toolbar .p-toolbar-group-start,
+.p-toolbar .p-toolbar-group-end {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Mobile-specific PrimeReact adjustments */
+@media (max-width: 768px) {
+  .p-dialog {
+    width: 95vw !important;
+    margin: 1rem;
+  }
+  
+  .p-datatable .p-datatable-thead > tr > th,
+  .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.75rem;
+  }
+  
+  .p-button {
+    min-height: 40px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .p-inputtext,
+  .p-dropdown,
+  .p-multiselect,
+  .p-calendar {
+    min-height: 40px;
+    font-size: 0.875rem;
+  }
+  
+  .p-toolbar {
+    padding: 0.5rem;
+  }
+  
+  .p-toolbar .p-button {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .p-dialog {
+    width: 98vw !important;
+    margin: 0.5rem;
+  }
+  
+  .p-datatable .p-datatable-thead > tr > th,
+  .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.25rem 0.125rem;
+    font-size: 0.7rem;
+  }
+  
+  .p-button {
+    min-height: 36px;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .p-inputtext,
+  .p-dropdown,
+  .p-multiselect,
+  .p-calendar {
+    min-height: 36px;
+    font-size: 0.8rem;
+  }
 }

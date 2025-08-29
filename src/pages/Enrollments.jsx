@@ -260,7 +260,6 @@ function Enrollments() {
 
           <Dialog
             visible={showAddMode}
-            style={{ width: '450px' }}
             header="Add Enrollment"
             modal
             className="p-fluid"
@@ -277,7 +276,6 @@ function Enrollments() {
 
           <Dialog
             visible={showEditMode}
-            style={{ width: '450px' }}
             header="Edit Enrollment"
             modal
             className="p-fluid"

@@ -100,7 +100,6 @@ function EditSession({ session, setSessionEdited }) {
                                 value={sessionInfo.name} 
                                 onChange={e => setSessionInfo({...sessionInfo, name: e.target.value})} 
                                 required 
-                                style={{ width: '300px' }}
                             />
                         </p>
                     </div>
@@ -112,7 +111,6 @@ function EditSession({ session, setSessionEdited }) {
                                 options={dayOfWeekOptions}
                                 onChange={e => setSessionInfo({...sessionInfo, day_of_week: e.value})}
                                 placeholder="Select a Day"
-                                style={{ width: '300px' }}
                             />
                         </p>
                     </div>
@@ -124,7 +122,6 @@ function EditSession({ session, setSessionEdited }) {
                                     value={sessionInfo.start_date ? new Date(sessionInfo.start_date) : null}
                                     onChange={(e) => setSessionInfo({...sessionInfo, start_date: e.value})}
                                     dateFormat="dd-mm-yy"
-                                    inputStyle={{ width: '200px' }}
                                     inputId="start_date"
                                 />
                                 <label htmlFor="start_date">dd-mm-yyyy</label>
@@ -139,7 +136,6 @@ function EditSession({ session, setSessionEdited }) {
                                     value={sessionInfo.end_date ? new Date(sessionInfo.end_date) : null}
                                     onChange={(e) => setSessionInfo({...sessionInfo, end_date: e.value})}
                                     dateFormat="dd-mm-yy"
-                                    inputStyle={{ width: '200px' }}
                                     inputId="end_date"
                                 />
                                 <label htmlFor="end_date">dd-mm-yyyy</label>
@@ -152,10 +148,9 @@ function EditSession({ session, setSessionEdited }) {
                             <FloatLabel>
                                 <Calendar 
                                     value={sessionInfo.start_time}
-                                    onChange={e => setSessionInfo({...sessionInfo, start_time: e.value})}
+                                    onChange={e => setSessionInfo({...sessionInfo, start_time: e.target.value})}
                                     timeOnly
                                     hourFormat="24"
-                                    inputStyle={{ width: '200px' }}
                                     inputId="start_time"
                                 />
                                 <label htmlFor="start_time">hh:mm</label>
@@ -168,10 +163,9 @@ function EditSession({ session, setSessionEdited }) {
                             <FloatLabel>
                                 <Calendar 
                                     value={sessionInfo.end_time}
-                                    onChange={e => setSessionInfo({...sessionInfo, end_time: e.value})}
+                                    onChange={e => setSessionInfo({...sessionInfo, end_time: e.target.value})}
                                     timeOnly
                                     hourFormat="24"
-                                    inputStyle={{ width: '200px' }}
                                     inputId="end_time"
                                 />
                                 <label htmlFor="end_time">hh:mm</label>
@@ -184,7 +178,6 @@ function EditSession({ session, setSessionEdited }) {
                             <InputText 
                                 value={sessionInfo.location} 
                                 onChange={e => setSessionInfo({...sessionInfo, location: e.target.value})}
-                                style={{ width: '300px' }}
                             />
                         </p>
                     </div>
@@ -200,7 +193,7 @@ function EditSession({ session, setSessionEdited }) {
                                         setSessionInfo({...sessionInfo, price_per_session: value})
                                     }
                                 }}
-                                style={{ width: '300px' }}
+
                             />
                         </p>
                     </div>
@@ -211,7 +204,7 @@ function EditSession({ session, setSessionEdited }) {
                                 rows={5} 
                                 value={sessionInfo.notes}
                                 onChange={e => setSessionInfo({...sessionInfo, notes: e.target.value})}
-                                style={{ width: '100%', maxWidth: '600px' }}
+
                             />
                         </p>
                     </div>

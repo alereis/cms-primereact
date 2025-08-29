@@ -75,13 +75,13 @@ function EditStudent({ student, setStudentEdited }) {
                     <div className='col-sm-12 col-md-6'>
                         <p>
                             <span>First Name:</span>
-                            <InputText id="in" value={studentInfo.first_name} onChange={e=>setStudentInfo({...studentInfo,first_name:e.target.value})} required style={{ width: '300px' }}/>
+                            <InputText id="in" value={studentInfo.first_name} onChange={e=>setStudentInfo({...studentInfo,first_name:e.target.value})} required />
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
                             <span>Last Name:</span>
-                            <InputText id="in" value={studentInfo.last_name} onChange={e=>setStudentInfo({...studentInfo,last_name:e.target.value})} style={{ width: '300px' }}/>
+                            <InputText id="in" value={studentInfo.last_name} onChange={e=>setStudentInfo({...studentInfo,last_name:e.target.value})} />
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
@@ -92,7 +92,6 @@ function EditStudent({ student, setStudentEdited }) {
                                     value={studentInfo.date_of_birth ? new Date(studentInfo.date_of_birth) : null}
                                     onChange={(e) => setStudentInfo({...studentInfo, date_of_birth: e.value})}
                                     dateFormat="dd-mm-yy"
-                                    inputStyle={{ width: '200px' }}
                                     inputId="date_of_birth"
                                 />
                                 <label htmlFor="date_of_birth">dd-mm-yyyy</label>
@@ -118,25 +117,25 @@ function EditStudent({ student, setStudentEdited }) {
                     <div className='col-sm-12 col-md-6'>
                         <p>
                             <span>First Name:</span>
-                            <InputText id="in" value={studentInfo.parent_first_name} onChange={e=>setStudentInfo({...studentInfo,parent_first_name:e.target.value})} required style={{ width: '300px' }}/>
+                            <InputText id="in" value={studentInfo.parent_first_name} onChange={e=>setStudentInfo({...studentInfo,parent_first_name:e.target.value})} required />
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
                             <span>Last Name:</span>
-                            <InputText id="in" value={studentInfo.parent_last_name} onChange={e=>setStudentInfo({...studentInfo,parent_last_name:e.target.value})} style={{ width: '300px' }}/>
+                            <InputText id="in" value={studentInfo.parent_last_name} onChange={e=>setStudentInfo({...studentInfo,parent_last_name:e.target.value})} />
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
                             <span>Parent Phone:</span>
-                            <InputText id="in" value={studentInfo.parent_phone_number} onChange={e=>setStudentInfo({...studentInfo,parent_phone_number:e.target.value})} required style={{ width: '300px' }}/>
+                            <InputText id="in" value={studentInfo.parent_phone_number} onChange={e=>setStudentInfo({...studentInfo,parent_phone_number:e.target.value})} required />
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
                             <span>Parent Email:</span>
-                            <InputText id="in" value={studentInfo.parent_email} onChange={e=>setStudentInfo({...studentInfo,parent_email:e.target.value})} style={{ width: '300px' }}/>
+                            <InputText id="in" value={studentInfo.parent_email} onChange={e=>setStudentInfo({...studentInfo,parent_email:e.target.value})} />
                         </p>
                     </div>
                 </div>
