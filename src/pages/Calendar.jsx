@@ -286,26 +286,20 @@ function Calendar() {
                 for (let year = currentYear; year <= currentYear + 1; year++) {
                     const nextBirthday = new Date(year, birthday.getMonth(), birthday.getDate());
                     
-                    // Only add if the birthday is today or in the future
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
-                    
-                    if (nextBirthday >= today) {
-                        events.push({
-                            id: `birthday-${student.id}-${year}`,
-                            title: `🎂 ${student.first_name} ${student.last_name}'s Birthday`,
-                            start: nextBirthday,
-                            allDay: true,
-                            backgroundColor: '#EC4899',
-                            borderColor: '#DB2777',
-                            textColor: '#FFFFFF',
-                            extendedProps: {
-                                type: 'birthday',
-                                data: student
-                            }
-                        });
-                        console.log('Added birthday event for:', student.first_name, 'on', nextBirthday.toDateString());
-                    }
+                    events.push({
+                        id: `birthday-${student.id}-${year}`,
+                        title: `🎂 ${student.first_name} ${student.last_name}'s Birthday`,
+                        start: nextBirthday,
+                        allDay: true,
+                        backgroundColor: '#EC4899',
+                        borderColor: '#DB2777',
+                        textColor: '#FFFFFF',
+                        extendedProps: {
+                            type: 'birthday',
+                            data: student
+                        }
+                    });
+                    console.log('Added birthday event for:', student.first_name, 'on', nextBirthday.toDateString());
                 }
             }
         });
