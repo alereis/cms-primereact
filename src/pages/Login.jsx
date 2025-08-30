@@ -11,6 +11,9 @@ function Login() {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  
+  // Boolean variable to control form footer visibility
+  const showFormFooter = false; // Set to true to enable the register link
 
   const validateForm = () => {
     const newErrors = {};
@@ -23,8 +26,8 @@ function Login() {
     
     if (!password.trim()) {
       newErrors.password = "Password is required";
-    } else if (password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+    } else if (password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
     }
     
     setErrors(newErrors);
@@ -74,6 +77,19 @@ function Login() {
     } else if (field === 'password') {
       setPassword(value);
     }
+  };
+
+  const renderFormFooter = () => {
+    if (!showFormFooter) return null;
+    
+    return (
+      <div className="form-footer">
+        <div className="forgot-pass-link">
+          <span>Don't have an account? </span>
+          <Link to="/register">Create one here</Link>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -129,12 +145,7 @@ function Login() {
         </button>
       </form>
       
-      <div className="form-footer">
-        <div className="forgot-pass-link">
-          <span>Don't have an account? </span>
-          <Link to="/register">Create one here</Link>
-        </div>
-      </div>
+      {renderFormFooter()}
     </div>
   )
 }
